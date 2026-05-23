@@ -1,0 +1,89 @@
+#nullable enable
+Atya.Diagnostics.Tracing.Abstractions.IActivitySourceAccessor
+Atya.Diagnostics.Tracing.Abstractions.IActivitySourceAccessor.ActivitySource.get -> System.Diagnostics.ActivitySource!
+Atya.Diagnostics.Tracing.Abstractions.IActivitySourceAccessor.StartActivity(string! name, System.Diagnostics.ActivityKind kind = System.Diagnostics.ActivityKind.Internal, System.Diagnostics.ActivityContext parentContext = default(System.Diagnostics.ActivityContext), System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, object?>>? tags = null, System.Collections.Generic.IEnumerable<System.Diagnostics.ActivityLink>? links = null) -> System.Diagnostics.Activity?
+Atya.Diagnostics.Tracing.Abstractions.IActivitySourceAccessor.StartClientActivity(string! name, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, object?>>? tags = null) -> System.Diagnostics.Activity?
+Atya.Diagnostics.Tracing.Abstractions.IActivitySourceAccessor.StartConsumerActivity(string! name, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, object?>>? tags = null) -> System.Diagnostics.Activity?
+Atya.Diagnostics.Tracing.Abstractions.IActivitySourceAccessor.StartInternalActivity(string! name, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, object?>>? tags = null) -> System.Diagnostics.Activity?
+Atya.Diagnostics.Tracing.Abstractions.IActivitySourceAccessor.StartProducerActivity(string! name, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, object?>>? tags = null) -> System.Diagnostics.Activity?
+Atya.Diagnostics.Tracing.Abstractions.IActivitySourceAccessor.StartServerActivity(string! name, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, object?>>? tags = null) -> System.Diagnostics.Activity?
+Atya.Diagnostics.Tracing.Activities.ActivitySourceAccessor
+Atya.Diagnostics.Tracing.Activities.ActivitySourceAccessor.ActivitySource.get -> System.Diagnostics.ActivitySource!
+Atya.Diagnostics.Tracing.Activities.ActivitySourceAccessor.ActivitySourceAccessor(Microsoft.Extensions.Options.IOptions<Atya.Diagnostics.Tracing.Options.TracingOptions!>! options) -> void
+Atya.Diagnostics.Tracing.Activities.ActivitySourceAccessor.Dispose() -> void
+Atya.Diagnostics.Tracing.Activities.ActivitySourceAccessor.StartActivity(string! name, System.Diagnostics.ActivityKind kind = System.Diagnostics.ActivityKind.Internal, System.Diagnostics.ActivityContext parentContext = default(System.Diagnostics.ActivityContext), System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, object?>>? tags = null, System.Collections.Generic.IEnumerable<System.Diagnostics.ActivityLink>? links = null) -> System.Diagnostics.Activity?
+Atya.Diagnostics.Tracing.Activities.ActivitySourceAccessor.StartClientActivity(string! name, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, object?>>? tags = null) -> System.Diagnostics.Activity?
+Atya.Diagnostics.Tracing.Activities.ActivitySourceAccessor.StartConsumerActivity(string! name, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, object?>>? tags = null) -> System.Diagnostics.Activity?
+Atya.Diagnostics.Tracing.Activities.ActivitySourceAccessor.StartInternalActivity(string! name, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, object?>>? tags = null) -> System.Diagnostics.Activity?
+Atya.Diagnostics.Tracing.Activities.ActivitySourceAccessor.StartProducerActivity(string! name, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, object?>>? tags = null) -> System.Diagnostics.Activity?
+Atya.Diagnostics.Tracing.Activities.ActivitySourceAccessor.StartServerActivity(string! name, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<string!, object?>>? tags = null) -> System.Diagnostics.Activity?
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.<Clone>$() -> Atya.Diagnostics.Tracing.Context.TraceContextSnapshot!
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.CorrelationId.get -> string?
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.CorrelationId.init -> void
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.Deconstruct(out string! traceId, out string! spanId, out string? traceParent, out string? traceState, out string? correlationId) -> void
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.Equals(Atya.Diagnostics.Tracing.Context.TraceContextSnapshot? other) -> bool
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.SpanId.get -> string!
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.SpanId.init -> void
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.ToHeaders() -> System.Collections.Generic.IReadOnlyDictionary<string!, string!>!
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TraceContextSnapshot(string! traceId, string! spanId, string? traceParent, string? traceState, string? correlationId) -> void
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TraceId.get -> string!
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TraceId.init -> void
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TraceParent.get -> string?
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TraceParent.init -> void
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TraceState.get -> string?
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TraceState.init -> void
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TryGetActivityContext(out System.Diagnostics.ActivityContext activityContext) -> bool
+Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.WriteTo(System.Collections.Generic.IDictionary<string!, string!>! headers) -> void
+Atya.Diagnostics.Tracing.DependencyInjection.TracingServiceCollectionExtensions
+Atya.Diagnostics.Tracing.Extensions.ActivityExtensions
+Atya.Diagnostics.Tracing.Options.TracingOptions
+Atya.Diagnostics.Tracing.Options.TracingOptions.AddDefaultTag(string! name, object? value) -> Atya.Diagnostics.Tracing.Options.TracingOptions!
+Atya.Diagnostics.Tracing.Options.TracingOptions.ActivitySourceName.get -> string!
+Atya.Diagnostics.Tracing.Options.TracingOptions.ActivitySourceName.set -> void
+Atya.Diagnostics.Tracing.Options.TracingOptions.ActivitySourceVersion.get -> string?
+Atya.Diagnostics.Tracing.Options.TracingOptions.ActivitySourceVersion.set -> void
+Atya.Diagnostics.Tracing.Options.TracingOptions.DefaultTags.get -> System.Collections.Generic.IDictionary<string!, object?>!
+Atya.Diagnostics.Tracing.Options.TracingOptions.ServiceName.get -> string?
+Atya.Diagnostics.Tracing.Options.TracingOptions.ServiceName.set -> void
+Atya.Diagnostics.Tracing.Options.TracingOptions.ServiceVersion.get -> string?
+Atya.Diagnostics.Tracing.Options.TracingOptions.ServiceVersion.set -> void
+Atya.Diagnostics.Tracing.Options.TracingOptions.TracingOptions() -> void
+Atya.Diagnostics.Tracing.Tags.TracingHeaderNames
+Atya.Diagnostics.Tracing.Tags.TracingTagNames
+const Atya.Diagnostics.Tracing.Tags.TracingHeaderNames.TraceParent = "traceparent" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingHeaderNames.TraceState = "tracestate" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.CorrelationId = "correlation.id" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.DependencySystem = "dependency.system" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.EntityId = "entity.id" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.EntityType = "entity.type" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.ErrorMessage = "error.message" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.ErrorType = "error.type" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.MessagingDestination = "messaging.destination" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.OperationName = "operation.name" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.Outcome = "outcome" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.ServiceName = "service.name" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.ServiceVersion = "service.version" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.TenantId = "tenant.id" -> string!
+const Atya.Diagnostics.Tracing.Tags.TracingTagNames.UserId = "user.id" -> string!
+override Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.Equals(object? obj) -> bool
+override Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.GetHashCode() -> int
+override Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.ToString() -> string!
+static Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.CaptureCurrent() -> Atya.Diagnostics.Tracing.Context.TraceContextSnapshot?
+static Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.FromActivity(System.Diagnostics.Activity! activity) -> Atya.Diagnostics.Tracing.Context.TraceContextSnapshot!
+static Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.operator !=(Atya.Diagnostics.Tracing.Context.TraceContextSnapshot? left, Atya.Diagnostics.Tracing.Context.TraceContextSnapshot? right) -> bool
+static Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.operator ==(Atya.Diagnostics.Tracing.Context.TraceContextSnapshot? left, Atya.Diagnostics.Tracing.Context.TraceContextSnapshot? right) -> bool
+static Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TryCaptureCurrent(out Atya.Diagnostics.Tracing.Context.TraceContextSnapshot? snapshot) -> bool
+static Atya.Diagnostics.Tracing.DependencyInjection.TracingServiceCollectionExtensions.AddAtyaTracing(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Action<Atya.Diagnostics.Tracing.Options.TracingOptions!>? configure = null) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.MarkError(this System.Diagnostics.Activity! activity, string! errorType, string? message = null) -> System.Diagnostics.Activity!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.MarkError(this System.Diagnostics.Activity! activity, System.Exception! exception) -> System.Diagnostics.Activity!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.MarkSuccess(this System.Diagnostics.Activity! activity) -> System.Diagnostics.Activity!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetCorrelationId(this System.Diagnostics.Activity! activity, string! correlationId) -> System.Diagnostics.Activity!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetDependencySystem(this System.Diagnostics.Activity! activity, string! dependencySystem) -> System.Diagnostics.Activity!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetEntity(this System.Diagnostics.Activity! activity, string! entityType, object? entityId) -> System.Diagnostics.Activity!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetMessagingDestination(this System.Diagnostics.Activity! activity, string! destination) -> System.Diagnostics.Activity!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetOperationName(this System.Diagnostics.Activity! activity, string! operationName) -> System.Diagnostics.Activity!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetOutcome(this System.Diagnostics.Activity! activity, string! outcome) -> System.Diagnostics.Activity!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetTagIfNotNull(this System.Diagnostics.Activity! activity, string! name, object? value) -> System.Diagnostics.Activity!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetTenantId(this System.Diagnostics.Activity! activity, string! tenantId) -> System.Diagnostics.Activity!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetUserId(this System.Diagnostics.Activity! activity, string! userId) -> System.Diagnostics.Activity!

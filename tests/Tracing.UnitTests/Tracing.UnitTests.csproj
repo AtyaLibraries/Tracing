@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Framework, analyzers, and default test packages are inherited from tests/Directory.Build.props. -->
+
+  <ItemGroup>
+    <PackageReference Include="Atya.Governance.Testing" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Tracing\Tracing.csproj" />
+  </ItemGroup>
+
+</Project>
