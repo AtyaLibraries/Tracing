@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using Atya.Diagnostics.Tracing.Abstractions;
 using Atya.Diagnostics.Tracing.Context;
-using Atya.Diagnostics.Tracing.DependencyInjection;
 using Atya.Diagnostics.Tracing.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 

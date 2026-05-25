@@ -5,7 +5,6 @@ global using Microsoft.Extensions.Options;
 global using Atya.Diagnostics.Tracing.Abstractions;
 global using Atya.Diagnostics.Tracing.Activities;
 global using Atya.Diagnostics.Tracing.Context;
-global using Atya.Diagnostics.Tracing.DependencyInjection;
 global using Atya.Diagnostics.Tracing.Extensions;
 global using Atya.Diagnostics.Tracing.Options;
 global using Atya.Diagnostics.Tracing.Tags;
