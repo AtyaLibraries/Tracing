@@ -6,10 +6,9 @@ using Atya.Diagnostics.Tracing.Activities;
 using Atya.Diagnostics.Tracing.Internal;
 using Atya.Diagnostics.Tracing.Options;
 using Atya.Foundation.Guards;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace Atya.Diagnostics.Tracing.DependencyInjection;
+namespace Microsoft.Extensions.DependencyInjection;
 
 /// <summary>
 /// Service registration extensions for Atya tracing services.
