@@ -13,10 +13,10 @@ namespace Atya.Diagnostics.Tracing.Activities;
 /// </summary>
 public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposable
 {
-    private readonly KeyValuePair<string, object?>[] defaultTags;
-    private readonly string? serviceName;
-    private readonly string? serviceVersion;
-    private bool disposed;
+    private readonly KeyValuePair<string, object?>[] _defaultTags;
+    private readonly string? _serviceName;
+    private readonly string? _serviceVersion;
+    private bool _disposed;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="ActivitySourceAccessor"/> class.
@@ -33,9 +33,9 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
         ValidateDefaultTagNames(tracingOptions.DefaultTags);
 
         this.ActivitySource = new ActivitySource(tracingOptions.ActivitySourceName, tracingOptions.ActivitySourceVersion);
-        this.serviceName = NormalizeOptionalValue(tracingOptions.ServiceName);
-        this.serviceVersion = NormalizeOptionalValue(tracingOptions.ServiceVersion);
-        this.defaultTags = tracingOptions.DefaultTags.ToArray();
+        _serviceName = NormalizeOptionalValue(tracingOptions.ServiceName);
+        _serviceVersion = NormalizeOptionalValue(tracingOptions.ServiceVersion);
+        _defaultTags = tracingOptions.DefaultTags.ToArray();
     }
 
     /// <inheritdoc />
@@ -49,7 +49,7 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
         IEnumerable<KeyValuePair<string, object?>>? tags = null,
         IEnumerable<ActivityLink>? links = null)
     {
-        ObjectDisposedException.ThrowIf(this.disposed, this);
+        ObjectDisposedException.ThrowIf(_disposed, this);
         _ = Guard.AgainstNullOrWhiteSpace(name);
 
         return this.ActivitySource.StartActivity(name, kind, parentContext, this.CreateActivityTags(tags), links);
@@ -100,13 +100,13 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
     /// </summary>
     public void Dispose()
     {
-        if (this.disposed)
+        if (_disposed)
         {
             return;
         }
 
         this.ActivitySource.Dispose();
-        this.disposed = true;
+        _disposed = true;
     }
 
     private static string? NormalizeOptionalValue(string? value)
@@ -140,17 +140,17 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
 
     private IEnumerable<KeyValuePair<string, object?>>? CreateActivityTags(IEnumerable<KeyValuePair<string, object?>>? tags)
     {
-        if (this.serviceName is null && this.serviceVersion is null && this.defaultTags.Length == 0)
+        if (_serviceName is null && _serviceVersion is null && _defaultTags.Length == 0)
         {
             return tags;
         }
 
         var activityTags = new Dictionary<string, object?>(StringComparer.Ordinal);
 
-        AddIfNotNull(activityTags, Tags.TracingTagNames.ServiceName, this.serviceName);
-        AddIfNotNull(activityTags, Tags.TracingTagNames.ServiceVersion, this.serviceVersion);
+        AddIfNotNull(activityTags, Tags.TracingTagNames.ServiceName, _serviceName);
+        AddIfNotNull(activityTags, Tags.TracingTagNames.ServiceVersion, _serviceVersion);
 
-        foreach (var tag in this.defaultTags)
+        foreach (var tag in _defaultTags)
         {
             AddIfNotNull(activityTags, tag.Key, tag.Value);
         }

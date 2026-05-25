@@ -22,7 +22,6 @@ This package intentionally does not configure OpenTelemetry SDK exporters, loggi
 
 ```csharp
 using Atya.Diagnostics.Tracing.Abstractions;
-using Atya.Diagnostics.Tracing.DependencyInjection;
 using Atya.Diagnostics.Tracing.Extensions;
 
 services.AddAtyaTracing(options =>

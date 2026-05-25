@@ -35,8 +35,8 @@ Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TraceState.get -> string?
 Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TraceState.init -> void
 Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TryGetActivityContext(out System.Diagnostics.ActivityContext activityContext) -> bool
 Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.WriteTo(System.Collections.Generic.IDictionary<string!, string!>! headers) -> void
-Atya.Diagnostics.Tracing.DependencyInjection.TracingServiceCollectionExtensions
 Atya.Diagnostics.Tracing.Extensions.ActivityExtensions
+Microsoft.Extensions.DependencyInjection.TracingServiceCollectionExtensions
 Atya.Diagnostics.Tracing.Options.TracingOptions
 Atya.Diagnostics.Tracing.Options.TracingOptions.AddDefaultTag(string! name, object? value) -> Atya.Diagnostics.Tracing.Options.TracingOptions!
 Atya.Diagnostics.Tracing.Options.TracingOptions.ActivitySourceName.get -> string!
@@ -74,7 +74,6 @@ static Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.FromActivity(System
 static Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.operator !=(Atya.Diagnostics.Tracing.Context.TraceContextSnapshot? left, Atya.Diagnostics.Tracing.Context.TraceContextSnapshot? right) -> bool
 static Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.operator ==(Atya.Diagnostics.Tracing.Context.TraceContextSnapshot? left, Atya.Diagnostics.Tracing.Context.TraceContextSnapshot? right) -> bool
 static Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TryCaptureCurrent(out Atya.Diagnostics.Tracing.Context.TraceContextSnapshot? snapshot) -> bool
-static Atya.Diagnostics.Tracing.DependencyInjection.TracingServiceCollectionExtensions.AddAtyaTracing(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Action<Atya.Diagnostics.Tracing.Options.TracingOptions!>? configure = null) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.MarkError(this System.Diagnostics.Activity! activity, string! errorType, string? message = null) -> System.Diagnostics.Activity!
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.MarkError(this System.Diagnostics.Activity! activity, System.Exception! exception) -> System.Diagnostics.Activity!
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.MarkSuccess(this System.Diagnostics.Activity! activity) -> System.Diagnostics.Activity!
@@ -87,3 +86,4 @@ static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetOutcome(this Sy
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetTagIfNotNull(this System.Diagnostics.Activity! activity, string! name, object? value) -> System.Diagnostics.Activity!
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetTenantId(this System.Diagnostics.Activity! activity, string! tenantId) -> System.Diagnostics.Activity!
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetUserId(this System.Diagnostics.Activity! activity, string! userId) -> System.Diagnostics.Activity!
+static Microsoft.Extensions.DependencyInjection.TracingServiceCollectionExtensions.AddAtyaTracing(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Action<Atya.Diagnostics.Tracing.Options.TracingOptions!>? configure = null) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
