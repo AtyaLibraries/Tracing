@@ -6,6 +6,7 @@
     <AssemblyName>Atya.Diagnostics.Tracing</AssemblyName>
     <RootNamespace>Atya.Diagnostics.Tracing</RootNamespace>
     <IsPackable>true</IsPackable>
+    <PackageValidationBaselineVersion>1.0.1</PackageValidationBaselineVersion>
     <Authors>Arsen Asulyan</Authors>
     <Copyright>Copyright (c) 2026 Arsen Asulyan</Copyright>
     <Description>Tracing abstractions and dependency injection helpers for Atya diagnostics packages.</Description>
