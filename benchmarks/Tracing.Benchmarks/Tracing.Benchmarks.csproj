@@ -1,6 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Atya.Build.Sdk">
   <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <IsPackable>false</IsPackable>
     <UseAppHost>false</UseAppHost>
@@ -9,15 +9,12 @@
     <ServerGarbageCollection>true</ServerGarbageCollection>
     <TieredCompilation>true</TieredCompilation>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\src\Tracing\Tracing.csproj">
       <AdditionalProperties>Configuration=Release</AdditionalProperties>
     </ProjectReference>
   </ItemGroup>
-
 </Project>
