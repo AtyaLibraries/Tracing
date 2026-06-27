@@ -28,7 +28,7 @@
         "type": "CentralTransitive",
         "requested": "[1.0.0, )",
         "resolved": "1.0.0",
-        "contentHash": "RvOzSSZ0/O2Qmp43cUJ/M2XFYci9ZMgUvR4A9Wio0iMEDKkSuPfUGA9YCA785KN1nqP7KXquwh890GL/Rv02Zg=="
+        "contentHash": "hLGlr7iPEAVMFEzNf2yGxEuJld/UGwBuC16TGyw3EGYrTQYf1ub3y24eoiFB4BGLQQDw1ll9hPoAdgVdJQEifQ=="
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions": {
         "type": "CentralTransitive",
