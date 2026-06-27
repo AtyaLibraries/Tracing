@@ -32,7 +32,7 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
         ValidateOptionalValue(tracingOptions.ServiceVersion, nameof(tracingOptions.ServiceVersion));
         ValidateDefaultTagNames(tracingOptions.DefaultTags);
 
-        this.ActivitySource = new ActivitySource(tracingOptions.ActivitySourceName, tracingOptions.ActivitySourceVersion);
+        ActivitySource = new ActivitySource(tracingOptions.ActivitySourceName, tracingOptions.ActivitySourceVersion);
         _serviceName = NormalizeOptionalValue(tracingOptions.ServiceName);
         _serviceVersion = NormalizeOptionalValue(tracingOptions.ServiceVersion);
         _defaultTags = tracingOptions.DefaultTags.ToArray();
@@ -52,7 +52,7 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
         ObjectDisposedException.ThrowIf(_disposed, this);
         _ = Guard.AgainstNullOrWhiteSpace(name);
 
-        return this.ActivitySource.StartActivity(name, kind, parentContext, this.CreateActivityTags(tags), links);
+        return ActivitySource.StartActivity(name, kind, parentContext, CreateActivityTags(tags), links);
     }
 
     /// <inheritdoc />
@@ -60,7 +60,7 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
         string name,
         IEnumerable<KeyValuePair<string, object?>>? tags = null)
     {
-        return this.StartActivity(name, ActivityKind.Internal, default, tags);
+        return StartActivity(name, ActivityKind.Internal, default, tags);
     }
 
     /// <inheritdoc />
@@ -68,7 +68,7 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
         string name,
         IEnumerable<KeyValuePair<string, object?>>? tags = null)
     {
-        return this.StartActivity(name, ActivityKind.Client, default, tags);
+        return StartActivity(name, ActivityKind.Client, default, tags);
     }
 
     /// <inheritdoc />
@@ -76,7 +76,7 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
         string name,
         IEnumerable<KeyValuePair<string, object?>>? tags = null)
     {
-        return this.StartActivity(name, ActivityKind.Server, default, tags);
+        return StartActivity(name, ActivityKind.Server, default, tags);
     }
 
     /// <inheritdoc />
@@ -84,7 +84,7 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
         string name,
         IEnumerable<KeyValuePair<string, object?>>? tags = null)
     {
-        return this.StartActivity(name, ActivityKind.Producer, default, tags);
+        return StartActivity(name, ActivityKind.Producer, default, tags);
     }
 
     /// <inheritdoc />
@@ -92,7 +92,7 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
         string name,
         IEnumerable<KeyValuePair<string, object?>>? tags = null)
     {
-        return this.StartActivity(name, ActivityKind.Consumer, default, tags);
+        return StartActivity(name, ActivityKind.Consumer, default, tags);
     }
 
     /// <summary>
@@ -105,7 +105,7 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
             return;
         }
 
-        this.ActivitySource.Dispose();
+        ActivitySource.Dispose();
         _disposed = true;
     }
 

@@ -2,20 +2,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.6.11709.129
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracing", "src\Tracing\Tracing.csproj", "{47AE9747-D3DE-494D-9949-E44DC50C30D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracing", "src\Tracing\Tracing.csproj", "{966364CC-DEF6-4849-B5D3-86C3A4D17715}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracing.UnitTests", "tests\Tracing.UnitTests\Tracing.UnitTests.csproj", "{D80B36DA-DA85-428C-94C0-0AEFCD18D91B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracing.UnitTests", "tests\Tracing.UnitTests\Tracing.UnitTests.csproj", "{6FB6108C-BB68-4FFD-9ED9-EC8A4869609F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Folder", "Solution Folder", "{4F61F403-4674-487B-ABF4-EE50B96981C1}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		Directory.Build.props = Directory.Build.props
-		Directory.Build.targets = Directory.Build.targets
-		Directory.Packages.props = Directory.Packages.props
 		.github\workflows\ci.yml = .github\workflows\ci.yml
+		.github\workflows\dependency-review.yml = .github\workflows\dependency-review.yml
 		.github\workflows\publish-nuget.yml = .github\workflows\publish-nuget.yml
+		Directory.Packages.props = Directory.Packages.props
 		global.json = global.json
 		LICENSE = LICENSE
 		README.md = README.md
@@ -27,11 +26,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D196C703
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{2C5AB38F-8197-4B93-AC0A-2182F5FAC5D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracing.Samples.Console", "samples\Tracing.Samples.Console\Tracing.Samples.Console.csproj", "{960D4D49-75E8-4820-8972-33C44920478A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracing.Samples.Console", "samples\Tracing.Samples.Console\Tracing.Samples.Console.csproj", "{EF76DBAC-04BB-41C8-907D-481C0FBE2A39}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "benchmarks", "benchmarks", "{4F208057-661E-4B8F-AD0C-9F56F92C6B00}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracing.Benchmarks", "benchmarks\Tracing.Benchmarks\Tracing.Benchmarks.csproj", "{40DC6A9D-B3B9-4014-8FA0-DEF939C12B66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tracing.Benchmarks", "benchmarks\Tracing.Benchmarks\Tracing.Benchmarks.csproj", "{5D02E50B-BB99-4947-AF3A-2630973259BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,33 +38,33 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{47AE9747-D3DE-494D-9949-E44DC50C30D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47AE9747-D3DE-494D-9949-E44DC50C30D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47AE9747-D3DE-494D-9949-E44DC50C30D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47AE9747-D3DE-494D-9949-E44DC50C30D9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D80B36DA-DA85-428C-94C0-0AEFCD18D91B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D80B36DA-DA85-428C-94C0-0AEFCD18D91B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D80B36DA-DA85-428C-94C0-0AEFCD18D91B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D80B36DA-DA85-428C-94C0-0AEFCD18D91B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{960D4D49-75E8-4820-8972-33C44920478A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{960D4D49-75E8-4820-8972-33C44920478A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{960D4D49-75E8-4820-8972-33C44920478A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{960D4D49-75E8-4820-8972-33C44920478A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40DC6A9D-B3B9-4014-8FA0-DEF939C12B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40DC6A9D-B3B9-4014-8FA0-DEF939C12B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40DC6A9D-B3B9-4014-8FA0-DEF939C12B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40DC6A9D-B3B9-4014-8FA0-DEF939C12B66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{966364CC-DEF6-4849-B5D3-86C3A4D17715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966364CC-DEF6-4849-B5D3-86C3A4D17715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966364CC-DEF6-4849-B5D3-86C3A4D17715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966364CC-DEF6-4849-B5D3-86C3A4D17715}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FB6108C-BB68-4FFD-9ED9-EC8A4869609F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FB6108C-BB68-4FFD-9ED9-EC8A4869609F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FB6108C-BB68-4FFD-9ED9-EC8A4869609F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FB6108C-BB68-4FFD-9ED9-EC8A4869609F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF76DBAC-04BB-41C8-907D-481C0FBE2A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF76DBAC-04BB-41C8-907D-481C0FBE2A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF76DBAC-04BB-41C8-907D-481C0FBE2A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF76DBAC-04BB-41C8-907D-481C0FBE2A39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D02E50B-BB99-4947-AF3A-2630973259BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D02E50B-BB99-4947-AF3A-2630973259BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D02E50B-BB99-4947-AF3A-2630973259BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D02E50B-BB99-4947-AF3A-2630973259BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{47AE9747-D3DE-494D-9949-E44DC50C30D9} = {DC4337D4-7797-44F7-AD1F-4A640A4E49D9}
-		{D80B36DA-DA85-428C-94C0-0AEFCD18D91B} = {D196C703-6673-4DC9-84E9-BB492024AAD2}
-		{960D4D49-75E8-4820-8972-33C44920478A} = {2C5AB38F-8197-4B93-AC0A-2182F5FAC5D3}
-		{40DC6A9D-B3B9-4014-8FA0-DEF939C12B66} = {4F208057-661E-4B8F-AD0C-9F56F92C6B00}
+		{966364CC-DEF6-4849-B5D3-86C3A4D17715} = {DC4337D4-7797-44F7-AD1F-4A640A4E49D9}
+		{6FB6108C-BB68-4FFD-9ED9-EC8A4869609F} = {D196C703-6673-4DC9-84E9-BB492024AAD2}
+		{EF76DBAC-04BB-41C8-907D-481C0FBE2A39} = {2C5AB38F-8197-4B93-AC0A-2182F5FAC5D3}
+		{5D02E50B-BB99-4947-AF3A-2630973259BC} = {4F208057-661E-4B8F-AD0C-9F56F92C6B00}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1883983E-D60F-435F-8424-2F5C96F7C8C8}
+		SolutionGuid = {E510B09B-A4E1-4E39-9229-899580E750CB}
 	EndGlobalSection
 EndGlobal
