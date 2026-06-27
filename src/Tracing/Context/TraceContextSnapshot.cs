@@ -27,11 +27,11 @@ public sealed record TraceContextSnapshot
         string? traceState,
         string? correlationId)
     {
-        this.TraceId = Guard.AgainstNullOrWhiteSpace(traceId);
-        this.SpanId = Guard.AgainstNullOrWhiteSpace(spanId);
-        this.TraceParent = NormalizeOptionalValue(traceParent);
-        this.TraceState = NormalizeOptionalValue(traceState);
-        this.CorrelationId = NormalizeOptionalValue(correlationId);
+        TraceId = Guard.AgainstNullOrWhiteSpace(traceId);
+        SpanId = Guard.AgainstNullOrWhiteSpace(spanId);
+        TraceParent = NormalizeOptionalValue(traceParent);
+        TraceState = NormalizeOptionalValue(traceState);
+        CorrelationId = NormalizeOptionalValue(correlationId);
     }
 
     /// <summary>
@@ -74,11 +74,11 @@ public sealed record TraceContextSnapshot
         out string? traceState,
         out string? correlationId)
     {
-        traceId = this.TraceId;
-        spanId = this.SpanId;
-        traceParent = this.TraceParent;
-        traceState = this.TraceState;
-        correlationId = this.CorrelationId;
+        traceId = TraceId;
+        spanId = SpanId;
+        traceParent = TraceParent;
+        traceState = TraceState;
+        correlationId = CorrelationId;
     }
 
     /// <summary>
@@ -109,7 +109,7 @@ public sealed record TraceContextSnapshot
     public IReadOnlyDictionary<string, string> ToHeaders()
     {
         var headers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-        this.WriteTo(headers);
+        WriteTo(headers);
 
         return new ReadOnlyDictionary<string, string>(headers);
     }
@@ -122,19 +122,19 @@ public sealed record TraceContextSnapshot
     {
         _ = Guard.AgainstNull(headers);
 
-        if (this.TraceParent is not null)
+        if (TraceParent is not null)
         {
-            headers[TracingHeaderNames.TraceParent] = this.TraceParent;
+            headers[TracingHeaderNames.TraceParent] = TraceParent;
         }
 
-        if (this.TraceState is not null)
+        if (TraceState is not null)
         {
-            headers[TracingHeaderNames.TraceState] = this.TraceState;
+            headers[TracingHeaderNames.TraceState] = TraceState;
         }
 
-        if (this.CorrelationId is not null)
+        if (CorrelationId is not null)
         {
-            headers[TracingTagNames.CorrelationId] = this.CorrelationId;
+            headers[TracingTagNames.CorrelationId] = CorrelationId;
         }
     }
 
@@ -145,13 +145,13 @@ public sealed record TraceContextSnapshot
     /// <returns><see langword="true"/> when the snapshot contains a valid traceparent value; otherwise <see langword="false"/>.</returns>
     public bool TryGetActivityContext(out ActivityContext activityContext)
     {
-        if (this.TraceParent is null)
+        if (TraceParent is null)
         {
             activityContext = default;
             return false;
         }
 
-        return ActivityContext.TryParse(this.TraceParent, this.TraceState, out activityContext);
+        return ActivityContext.TryParse(TraceParent, TraceState, out activityContext);
     }
 
     /// <summary>

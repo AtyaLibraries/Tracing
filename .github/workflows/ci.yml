@@ -1,4 +1,4 @@
-﻿name: CI
+name: CI
 
 on:
   push:
@@ -18,3 +18,4 @@ jobs:
       solution: ./Tracing.sln
       test-project: ./tests/Tracing.UnitTests/Tracing.UnitTests.csproj
       package-project: ./src/Tracing/Tracing.csproj
+      allow-empty-coverage: true # scaffold has no covered code yet; set false once you add some

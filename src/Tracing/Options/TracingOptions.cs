@@ -45,7 +45,7 @@ public sealed class TracingOptions
     {
         _ = Guard.AgainstNullOrWhiteSpace(name);
 
-        this.DefaultTags[name] = value;
+        DefaultTags[name] = value;
         return this;
     }
 }
