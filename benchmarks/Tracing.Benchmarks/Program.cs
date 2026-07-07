@@ -9,14 +9,24 @@ using System.Diagnostics;
 
 namespace Tracing.Benchmarks;
 
+/// <summary>
+/// Runs the Atya.Diagnostics.Tracing benchmark suite.
+/// </summary>
 public static class Program
 {
+    /// <summary>
+    /// Executes the benchmark suite.
+    /// </summary>
+    /// <param name="args">Command-line arguments passed to BenchmarkDotNet.</param>
     public static void Main(string[] args)
     {
         _ = BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
     }
 }
 
+/// <summary>
+/// Benchmarks activity source access and trace context propagation helpers.
+/// </summary>
 [MemoryDiagnoser]
 public class ActivitySourceAccessorBenchmarks : IDisposable
 {
@@ -35,6 +45,9 @@ public class ActivitySourceAccessorBenchmarks : IDisposable
     private Dictionary<string, string> headers = null!;
     private bool disposed;
 
+    /// <summary>
+    /// Initializes benchmark state.
+    /// </summary>
     [GlobalSetup]
     public void Setup()
     {
@@ -53,12 +66,18 @@ public class ActivitySourceAccessorBenchmarks : IDisposable
         this.headers = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
     }
 
+    /// <summary>
+    /// Cleans up benchmark state.
+    /// </summary>
     [GlobalCleanup]
     public void Cleanup()
     {
         this.Dispose();
     }
 
+    /// <summary>
+    /// Releases benchmark resources.
+    /// </summary>
     public void Dispose()
     {
         if (this.disposed)
@@ -74,6 +93,10 @@ public class ActivitySourceAccessorBenchmarks : IDisposable
         GC.SuppressFinalize(this);
     }
 
+    /// <summary>
+    /// Starts an activity when no listener is attached.
+    /// </summary>
+    /// <returns><see langword="true"/> when no activity is created.</returns>
     [Benchmark(Baseline = true)]
     public bool StartActivityNoListener()
     {
@@ -81,6 +104,10 @@ public class ActivitySourceAccessorBenchmarks : IDisposable
         return activity is null;
     }
 
+    /// <summary>
+    /// Starts an activity when a listener is attached.
+    /// </summary>
+    /// <returns><see langword="true"/> when an activity is created.</returns>
     [Benchmark]
     public bool StartActivityWithListener()
     {
@@ -88,6 +115,10 @@ public class ActivitySourceAccessorBenchmarks : IDisposable
         return activity is not null;
     }
 
+    /// <summary>
+    /// Captures the current trace context snapshot.
+    /// </summary>
+    /// <returns>The current trace context snapshot.</returns>
     [Benchmark]
     public TraceContextSnapshot CaptureCurrentSnapshot()
     {
@@ -96,12 +127,20 @@ public class ActivitySourceAccessorBenchmarks : IDisposable
         return TraceContextSnapshot.CaptureCurrent()!;
     }
 
+    /// <summary>
+    /// Creates propagation headers from a trace context snapshot.
+    /// </summary>
+    /// <returns>The propagation headers.</returns>
     [Benchmark]
     public IReadOnlyDictionary<string, string> CreatePropagationHeaders()
     {
         return this.snapshot.ToHeaders();
     }
 
+    /// <summary>
+    /// Writes propagation headers into a dictionary.
+    /// </summary>
+    /// <returns>The number of written headers.</returns>
     [Benchmark]
     public int WritePropagationHeaders()
     {
@@ -110,6 +149,10 @@ public class ActivitySourceAccessorBenchmarks : IDisposable
         return this.headers.Count;
     }
 
+    /// <summary>
+    /// Parses an activity context from the snapshot.
+    /// </summary>
+    /// <returns><see langword="true"/> when parsing succeeds.</returns>
     [Benchmark]
     public bool ParseActivityContext()
     {
