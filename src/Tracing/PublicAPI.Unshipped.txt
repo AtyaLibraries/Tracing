@@ -88,3 +88,17 @@ static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetTagIfNotNull(th
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetTenantId(this System.Diagnostics.Activity! activity, string! tenantId) -> System.Diagnostics.Activity!
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetUserId(this System.Diagnostics.Activity! activity, string! userId) -> System.Diagnostics.Activity!
 static Microsoft.Extensions.DependencyInjection.TracingServiceCollectionExtensions.AddAtyaTracing(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Action<Atya.Diagnostics.Tracing.Options.TracingOptions!>? configure = null) -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+Atya.Diagnostics.Tracing.Correlation.CorrelationContext
+Atya.Diagnostics.Tracing.Correlation.CorrelationHeader
+Atya.Diagnostics.Tracing.Correlation.CorrelationIdPolicy
+Atya.Diagnostics.Tracing.Correlation.CorrelationIdPolicy.CorrelationIdPolicy() -> void
+Atya.Diagnostics.Tracing.Correlation.CorrelationIdPolicy.IsAllowedChar.get -> System.Func<char, bool>!
+Atya.Diagnostics.Tracing.Correlation.CorrelationIdPolicy.IsAllowedChar.set -> void
+Atya.Diagnostics.Tracing.Correlation.CorrelationIdPolicy.IsValid(string? id) -> bool
+Atya.Diagnostics.Tracing.Correlation.CorrelationIdPolicy.MaxLength.get -> int
+Atya.Diagnostics.Tracing.Correlation.CorrelationIdPolicy.MaxLength.set -> void
+Atya.Diagnostics.Tracing.Correlation.CorrelationIdPolicy.Resolve(System.Collections.Generic.IEnumerable<string?>! inboundValues) -> string?
+const Atya.Diagnostics.Tracing.Correlation.CorrelationHeader.DefaultName = "X-Correlation-ID" -> string!
+static Atya.Diagnostics.Tracing.Correlation.CorrelationContext.Current.get -> string?
+static Atya.Diagnostics.Tracing.Correlation.CorrelationContext.Push(string! id) -> System.IDisposable!
+static Atya.Diagnostics.Tracing.Correlation.CorrelationIdPolicy.Generate() -> string!

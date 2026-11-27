@@ -12,6 +12,7 @@ dotnet add package Atya.Diagnostics.Tracing
 
 - DI registration for a package-owned `ActivitySource`.
 - Convenience methods for internal, client, server, producer, and consumer activities.
+- Correlation id ownership for all Atya packages: the default header name (`CorrelationHeader`), the id policy (`CorrelationIdPolicy`: 128 characters, alphanumeric plus `- _ . :`) and the ambient `CorrelationContext` carrier. It uses an `AsyncLocal`, tags `Activity.Current` with `correlation.id` when an Activity exists, and never uses Activity baggage or creates an Activity.
 - Common tag helpers for correlation, tenant, user, entity, dependency, messaging, outcomes, and errors.
 - Optional service/default tags applied to package-created activities.
 - Lightweight trace-context snapshots and W3C propagation header helpers.
