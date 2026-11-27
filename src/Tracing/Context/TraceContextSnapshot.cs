@@ -12,6 +12,11 @@ namespace Atya.Diagnostics.Tracing.Context;
 /// </summary>
 public sealed record TraceContextSnapshot
 {
+    private const int MaxTraceStateLength = 512;
+
+    private string? _traceParent;
+    private string? _traceState;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="TraceContextSnapshot"/> class.
     /// </summary>
@@ -29,8 +34,8 @@ public sealed record TraceContextSnapshot
     {
         TraceId = Guard.AgainstNullOrWhiteSpace(traceId);
         SpanId = Guard.AgainstNullOrWhiteSpace(spanId);
-        TraceParent = NormalizeOptionalValue(traceParent);
-        TraceState = NormalizeOptionalValue(traceState);
+        TraceParent = traceParent;
+        TraceState = traceState;
         CorrelationId = NormalizeOptionalValue(correlationId);
     }
 
@@ -47,12 +52,20 @@ public sealed record TraceContextSnapshot
     /// <summary>
     /// Gets the current traceparent value.
     /// </summary>
-    public string? TraceParent { get; init; }
+    public string? TraceParent
+    {
+        get => _traceParent;
+        init => _traceParent = NormalizeTraceParent(value);
+    }
 
     /// <summary>
     /// Gets the current tracestate value.
     /// </summary>
-    public string? TraceState { get; init; }
+    public string? TraceState
+    {
+        get => _traceState;
+        init => _traceState = NormalizeTraceState(value);
+    }
 
     /// <summary>
     /// Gets the current correlation id when available.
@@ -168,9 +181,35 @@ public sealed record TraceContextSnapshot
         return new TraceContextSnapshot(
             activity.TraceId.ToString(),
             activity.SpanId.ToString(),
-            activity.Id,
+            activity.IdFormat == ActivityIdFormat.W3C ? activity.Id : null,
             activity.TraceStateString,
             correlationId);
+    }
+
+    // Only a well-formed W3C traceparent is ever carried; anything else (hierarchical ids, junk) is dropped
+    // so it can never be propagated as if it were valid trace context.
+    private static string? NormalizeTraceParent(string? value)
+    {
+        return !string.IsNullOrWhiteSpace(value) && ActivityContext.TryParse(value, null, out _) ? value : null;
+    }
+
+    // W3C limits tracestate to 512 characters; oversized or control-character values are not propagated.
+    private static string? NormalizeTraceState(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value) || value.Length > MaxTraceStateLength)
+        {
+            return null;
+        }
+
+        foreach (var character in value)
+        {
+            if (char.IsControl(character))
+            {
+                return null;
+            }
+        }
+
+        return value;
     }
 
     private static string? NormalizeOptionalValue(string? value)
