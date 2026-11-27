@@ -4,9 +4,9 @@
     "net10.0": {
       "Atya.Foundation.Guards": {
         "type": "Direct",
-        "requested": "[1.0.2, )",
-        "resolved": "1.0.2",
-        "contentHash": "pK0hllKNECWmAK1XInrp94OSon9NFnbkPL/P37WzUD1riSR/AuaeRo0/VkPP8fw6KuAR3IrqsIHNv2l+soKBhA=="
+        "requested": "[1.1.0, )",
+        "resolved": "1.1.0",
+        "contentHash": "AKdLrehqfdZjwgSzm3TkeOChzL934l28eraXaYyJEN3VNopVWa7/cVRAwFY7bs4UbwmnReYyczCnzM5mrVZQag=="
       },
       "Atya.Governance.CodeQuality": {
         "type": "Direct",

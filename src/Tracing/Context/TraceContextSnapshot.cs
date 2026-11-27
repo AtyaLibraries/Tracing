@@ -2,6 +2,7 @@
 // Copyright (c) Atya. All rights reserved.
 // </copyright>
 using System.Collections.ObjectModel;
+using Atya.Diagnostics.Tracing.Correlation;
 using Atya.Diagnostics.Tracing.Tags;
 using Atya.Foundation.Guards;
 
@@ -147,7 +148,7 @@ public sealed record TraceContextSnapshot
 
         if (CorrelationId is not null)
         {
-            headers[TracingTagNames.CorrelationId] = CorrelationId;
+            headers[CorrelationHeader.DefaultName] = CorrelationId;
         }
     }
 

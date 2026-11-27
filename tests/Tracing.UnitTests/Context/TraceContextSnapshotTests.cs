@@ -154,10 +154,10 @@ public sealed class TraceContextSnapshotTests
 
         _ = headers.Should().ContainKey("traceparent");
         _ = headers.Should().ContainKey("tracestate");
-        _ = headers.Should().ContainKey(TracingTagNames.CorrelationId);
+        _ = headers.Should().ContainKey(CorrelationHeader.DefaultName);
 
         _ = headers["tracestate"].Should().Be("rojo=00f067aa0ba902b7");
-        _ = headers[TracingTagNames.CorrelationId].Should().Be("corr-123");
+        _ = headers[CorrelationHeader.DefaultName].Should().Be("corr-123");
     }
 
     [Fact]
@@ -180,7 +180,7 @@ public sealed class TraceContextSnapshotTests
         _ = headers.Should().Contain("existing", "value");
         _ = headers.Should().Contain(TracingHeaderNames.TraceParent, "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01");
         _ = headers.Should().Contain(TracingHeaderNames.TraceState, "rojo=00f067aa0ba902b7");
-        _ = headers.Should().Contain(TracingTagNames.CorrelationId, "corr-123");
+        _ = headers.Should().Contain(CorrelationHeader.DefaultName, "corr-123");
     }
 
     [Fact]
