@@ -186,7 +186,20 @@ public sealed class ActivityExtensionsTests
         _ = activity.Status.Should().Be(ActivityStatusCode.Error);
         _ = activity.GetTagItem(TracingTagNames.Outcome).Should().Be("error");
         _ = activity.GetTagItem(TracingTagNames.ErrorType).Should().Be(typeof(InvalidOperationException).FullName);
-        _ = activity.GetTagItem(TracingTagNames.ErrorMessage).Should().Be("Something failed.");
+        _ = activity.GetTagItem(TracingTagNames.ErrorMessage).Should().BeNull();
+        _ = activity.StatusDescription.Should().BeNull();
+    }
+
+    [Fact]
+    public void MarkError_With_Exception_Should_Record_Message_Only_When_Opted_In()
+    {
+        using var activity = new Activity("TestActivity");
+        _ = activity.Start();
+
+        _ = activity.MarkError(new InvalidOperationException("Server=db;Password=secret"), recordMessage: true);
+
+        _ = activity.GetTagItem(TracingTagNames.ErrorMessage).Should().Be("Server=db;Password=secret");
+        _ = activity.StatusDescription.Should().Be("Server=db;Password=secret");
     }
 
     [Fact]

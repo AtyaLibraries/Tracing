@@ -370,4 +370,18 @@ public sealed class ActivitySourceAccessorTests
 
         _ = act.Should().NotThrow();
     }
+
+    [Fact]
+    public void StartActivity_Should_Return_Null_Without_A_Listener()
+    {
+        var options = Microsoft.Extensions.Options.Options.Create(new TracingOptions
+        {
+            ActivitySourceName = "Tests.NoListener." + Guid.NewGuid().ToString("N"),
+            ServiceName = "svc",
+        });
+
+        using var accessor = new ActivitySourceAccessor(options);
+
+        _ = accessor.StartInternalActivity("NoListener").Should().BeNull();
+    }
 }

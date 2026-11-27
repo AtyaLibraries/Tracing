@@ -8,6 +8,13 @@ namespace Atya.Diagnostics.Tracing.Tags;
 /// </summary>
 public static class TracingHeaderNames
 {
+    /// <summary>
+    /// The W3C trace context traceparent header name.
+    /// </summary>
     public const string TraceParent = "traceparent";
+
+    /// <summary>
+    /// The W3C trace context tracestate header name.
+    /// </summary>
     public const string TraceState = "tracestate";
 }

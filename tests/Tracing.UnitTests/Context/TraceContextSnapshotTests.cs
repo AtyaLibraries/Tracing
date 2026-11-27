@@ -44,16 +44,16 @@ public sealed class TraceContextSnapshotTests
         var snapshot = new TraceContextSnapshot(
             traceId: "trace-id",
             spanId: "span-id",
-            traceParent: "trace-parent",
-            traceState: "trace-state",
+            traceParent: "00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01",
+            traceState: "vendor=state",
             correlationId: "corr-123");
 
         var (traceId, spanId, traceParent, traceState, correlationId) = snapshot;
 
         _ = traceId.Should().Be("trace-id");
         _ = spanId.Should().Be("span-id");
-        _ = traceParent.Should().Be("trace-parent");
-        _ = traceState.Should().Be("trace-state");
+        _ = traceParent.Should().Be("00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01");
+        _ = traceState.Should().Be("vendor=state");
         _ = correlationId.Should().Be("corr-123");
     }
 
@@ -273,5 +273,61 @@ public sealed class TraceContextSnapshotTests
 
         _ = act.Should().Throw<ArgumentNullException>()
             .WithParameterName("activity");
+    }
+
+    [Fact]
+    public void Constructor_Should_Drop_Malformed_TraceParent()
+    {
+        var snapshot = new TraceContextSnapshot("trace", "span", "not-a-traceparent", null, null);
+
+        _ = snapshot.TraceParent.Should().BeNull();
+        _ = snapshot.ToHeaders().Should().NotContainKey(TracingHeaderNames.TraceParent);
+    }
+
+    [Fact]
+    public void With_Expression_Should_Not_Bypass_TraceParent_Validation()
+    {
+        var snapshot = new TraceContextSnapshot("trace", "span", null, null, null);
+
+        var changed = snapshot with { TraceParent = "junk", TraceState = new string('a', 600) };
+
+        _ = changed.TraceParent.Should().BeNull();
+        _ = changed.TraceState.Should().BeNull();
+    }
+
+    [Fact]
+    public void Constructor_Should_Drop_Oversized_Or_ControlCharacter_TraceState()
+    {
+        var oversized = new TraceContextSnapshot("trace", "span", null, new string('a', 513), null);
+        var control = new TraceContextSnapshot("trace", "span", null, "vendor=a\r\nX-Injected: 1", null);
+        var valid = new TraceContextSnapshot("trace", "span", null, "vendor=state", null);
+
+        _ = oversized.TraceState.Should().BeNull();
+        _ = control.TraceState.Should().BeNull();
+        _ = valid.TraceState.Should().Be("vendor=state");
+    }
+
+    [Fact]
+    public void FromActivity_Should_Not_Treat_A_Hierarchical_Activity_Id_As_TraceParent()
+    {
+        var previous = Activity.DefaultIdFormat;
+        var previousForce = Activity.ForceDefaultIdFormat;
+        try
+        {
+            Activity.DefaultIdFormat = ActivityIdFormat.Hierarchical;
+            Activity.ForceDefaultIdFormat = true;
+            using var activity = new Activity("Hierarchical");
+            _ = activity.Start();
+
+            var snapshot = TraceContextSnapshot.FromActivity(activity);
+
+            _ = activity.Id.Should().StartWith("|");
+            _ = snapshot.TraceParent.Should().BeNull();
+        }
+        finally
+        {
+            Activity.DefaultIdFormat = previous;
+            Activity.ForceDefaultIdFormat = previousForce;
+        }
     }
 }

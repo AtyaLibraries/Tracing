@@ -63,7 +63,7 @@ Use `snapshot.TryGetActivityContext(out var context)` to recreate an `ActivityCo
 
 ## Error Handling
 
-`MarkError(Exception)` sets `ActivityStatusCode.Error`, `outcome=error`, `error.type`, and `error.message` when an exception has a non-empty message. `MarkSuccess()` sets `ActivityStatusCode.Ok` and `outcome=success`.
+`MarkError(Exception)` sets `ActivityStatusCode.Error`, `outcome=error` and `error.type`; the exception message is not recorded unless you call `MarkError(Exception, recordMessage: true)`. Trace context carried by `TraceContextSnapshot` is limited to a well-formed W3C `traceparent` and a `tracestate` of at most 512 characters; hierarchical activity ids are never propagated as `traceparent`. `ActivitySourceAccessor` returns `null` without building tags when no listener is attached. `MarkSuccess()` sets `ActivityStatusCode.Ok` and `outcome=success`.
 
 ## Compatibility
 
