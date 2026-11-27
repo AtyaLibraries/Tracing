@@ -157,18 +157,39 @@ public static class ActivityExtensions
     /// <summary>
     /// Marks the activity as failed using the provided exception.
     /// </summary>
+    /// <remarks>
+    /// The exception message is not recorded because it can carry connection strings, identifiers or other sensitive
+    /// text. Use <see cref="MarkError(Activity, Exception, bool)"/> to opt in.
+    /// </remarks>
     /// <param name="activity">The activity.</param>
     /// <param name="exception">The exception.</param>
     /// <returns>The same activity instance.</returns>
     public static Activity MarkError(this Activity activity, Exception exception)
     {
+        return MarkError(activity, exception, recordMessage: false);
+    }
+
+    /// <summary>
+    /// Marks the activity as failed using the provided exception, optionally recording its message.
+    /// </summary>
+    /// <param name="activity">The activity.</param>
+    /// <param name="exception">The exception.</param>
+    /// <param name="recordMessage">
+    /// <see langword="true"/> to record <see cref="Exception.Message"/> as the status description and error message
+    /// tag; <see langword="false"/> to record only the exception type.
+    /// </param>
+    /// <returns>The same activity instance.</returns>
+    public static Activity MarkError(this Activity activity, Exception exception, bool recordMessage)
+    {
         _ = Guard.AgainstNull(activity);
         _ = Guard.AgainstNull(exception);
 
-        _ = activity.SetStatus(ActivityStatusCode.Error, exception.Message);
+        var message = recordMessage && !string.IsNullOrWhiteSpace(exception.Message) ? exception.Message : null;
+
+        _ = activity.SetStatus(ActivityStatusCode.Error, message);
         _ = activity.SetTag(TracingTagNames.Outcome, "error");
         _ = activity.SetTag(TracingTagNames.ErrorType, exception.GetType().FullName);
-        _ = activity.SetTagIfNotNull(TracingTagNames.ErrorMessage, string.IsNullOrWhiteSpace(exception.Message) ? null : exception.Message);
+        _ = activity.SetTagIfNotNull(TracingTagNames.ErrorMessage, message);
 
         return activity;
     }

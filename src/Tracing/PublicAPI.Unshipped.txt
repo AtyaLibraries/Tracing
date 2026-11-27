@@ -76,6 +76,7 @@ static Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.operator ==(Atya.Di
 static Atya.Diagnostics.Tracing.Context.TraceContextSnapshot.TryCaptureCurrent(out Atya.Diagnostics.Tracing.Context.TraceContextSnapshot? snapshot) -> bool
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.MarkError(this System.Diagnostics.Activity! activity, string! errorType, string? message = null) -> System.Diagnostics.Activity!
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.MarkError(this System.Diagnostics.Activity! activity, System.Exception! exception) -> System.Diagnostics.Activity!
+static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.MarkError(this System.Diagnostics.Activity! activity, System.Exception! exception, bool recordMessage) -> System.Diagnostics.Activity!
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.MarkSuccess(this System.Diagnostics.Activity! activity) -> System.Diagnostics.Activity!
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetCorrelationId(this System.Diagnostics.Activity! activity, string! correlationId) -> System.Diagnostics.Activity!
 static Atya.Diagnostics.Tracing.Extensions.ActivityExtensions.SetDependencySystem(this System.Diagnostics.Activity! activity, string! dependencySystem) -> System.Diagnostics.Activity!

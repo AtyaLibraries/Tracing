@@ -52,7 +52,10 @@ public sealed class ActivitySourceAccessor : IActivitySourceAccessor, IDisposabl
         ObjectDisposedException.ThrowIf(_disposed, this);
         _ = Guard.AgainstNullOrWhiteSpace(name);
 
-        return ActivitySource.StartActivity(name, kind, parentContext, CreateActivityTags(tags), links);
+        // No listener means no activity: skip building the default-tag dictionary entirely.
+        return ActivitySource.HasListeners()
+            ? ActivitySource.StartActivity(name, kind, parentContext, CreateActivityTags(tags), links)
+            : null;
     }
 
     /// <inheritdoc />
