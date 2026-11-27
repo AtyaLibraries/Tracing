@@ -8,19 +8,19 @@ namespace Atya.Diagnostics.Tracing.Correlation;
 /// </summary>
 public sealed class CorrelationIdPolicy
 {
-    private int maxLength = 128;
-    private Func<char, bool> isAllowedChar = DefaultIsAllowedChar;
+    private int _maxLength = 128;
+    private Func<char, bool> _isAllowedChar = DefaultIsAllowedChar;
 
     /// <summary>
     /// Gets or sets the maximum accepted length. The default is 128.
     /// </summary>
     public int MaxLength
     {
-        get => maxLength;
+        get => _maxLength;
         set
         {
             ArgumentOutOfRangeException.ThrowIfLessThan(value, 1);
-            maxLength = value;
+            _maxLength = value;
         }
     }
 
@@ -29,11 +29,11 @@ public sealed class CorrelationIdPolicy
     /// </summary>
     public Func<char, bool> IsAllowedChar
     {
-        get => isAllowedChar;
+        get => _isAllowedChar;
         set
         {
             ArgumentNullException.ThrowIfNull(value);
-            isAllowedChar = value;
+            _isAllowedChar = value;
         }
     }
 
@@ -84,14 +84,14 @@ public sealed class CorrelationIdPolicy
     /// <returns><see langword="true"/> when the id is acceptable.</returns>
     public bool IsValid(string? id)
     {
-        if (string.IsNullOrEmpty(id) || id.Length > maxLength)
+        if (string.IsNullOrEmpty(id) || id.Length > _maxLength)
         {
             return false;
         }
 
         foreach (var c in id)
         {
-            if (!isAllowedChar(c))
+            if (!_isAllowedChar(c))
             {
                 return false;
             }

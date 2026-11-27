@@ -11,12 +11,12 @@ namespace Atya.Diagnostics.Tracing.Correlation;
 /// </summary>
 public static class CorrelationContext
 {
-    private static readonly AsyncLocal<string?> Value = new();
+    private static readonly AsyncLocal<string?> s_value = new();
 
     /// <summary>
     /// Gets the correlation id for the current logical flow, or <see langword="null"/>.
     /// </summary>
-    public static string? Current => Value.Value;
+    public static string? Current => s_value.Value;
 
     /// <summary>
     /// Makes <paramref name="id"/> current and tags <see cref="Activity.Current"/> with it when one exists.
@@ -27,21 +27,21 @@ public static class CorrelationContext
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(id);
 
-        var previous = Value.Value;
-        Value.Value = id;
+        var previous = s_value.Value;
+        s_value.Value = id;
         _ = Activity.Current?.SetCorrelationId(id);
         return new Scope(previous);
     }
 
     private sealed class Scope(string? previous) : IDisposable
     {
-        private int disposed;
+        private int _disposed;
 
         public void Dispose()
         {
-            if (Interlocked.Exchange(ref disposed, 1) == 0)
+            if (Interlocked.Exchange(ref _disposed, 1) == 0)
             {
-                Value.Value = previous;
+                s_value.Value = previous;
             }
         }
     }
