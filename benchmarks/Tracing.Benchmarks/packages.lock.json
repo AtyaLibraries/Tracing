@@ -147,16 +147,16 @@
       "Atya.Diagnostics.Tracing": {
         "type": "Project",
         "dependencies": {
-          "Atya.Foundation.Guards": "[1.0.2, )",
+          "Atya.Foundation.Guards": "[1.1.0, )",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[10.0.15, )",
           "Microsoft.Extensions.Options": "[10.0.15, )"
         }
       },
       "Atya.Foundation.Guards": {
         "type": "CentralTransitive",
-        "requested": "[1.0.2, )",
-        "resolved": "1.0.2",
-        "contentHash": "pK0hllKNECWmAK1XInrp94OSon9NFnbkPL/P37WzUD1riSR/AuaeRo0/VkPP8fw6KuAR3IrqsIHNv2l+soKBhA=="
+        "requested": "[1.1.0, )",
+        "resolved": "1.1.0",
+        "contentHash": "AKdLrehqfdZjwgSzm3TkeOChzL934l28eraXaYyJEN3VNopVWa7/cVRAwFY7bs4UbwmnReYyczCnzM5mrVZQag=="
       },
       "Microsoft.Extensions.DependencyInjection": {
         "type": "CentralTransitive",
